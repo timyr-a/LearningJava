@@ -8,8 +8,8 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         final byte size = 10;
-        fillAndSortArray(size, 1, 100, true, "Сортировка по возрастанию");
-        fillAndSortArray(size, 25, 75, false, "Сортировка по убыванию");
+        fillAndSortArray(size, 1, 100, true);
+        fillAndSortArray(size, 25, 75, false);
         /*
         System.out.println("Сортировка по возрастанию");
         int[] array1 = new int[size];
@@ -26,9 +26,19 @@ public class Main {
         */
     }
 
-    private static void fillAndSortArray(byte size, int minValue, int maxValue,
-                                         boolean asc, String description) {
+    private static void fillAndSortArray(byte size, int minValue, int maxValue, boolean asc) {
+        /*
+        String description;
+        if(asc)
+            description = "Сортировка по возрастанию";
+        else
+            description = "Сортировка по убыванию";
         System.out.println(description);
+        */
+        System.out.println(asc
+                ? "Сортировка по возрастанию"
+                : "Сортировка по убыванию");
+
         int[] array1 = new int[size];
         fillArray(array1, minValue, maxValue);
         printArray(array1);
@@ -60,8 +70,12 @@ public class Main {
             // проход по несортированной части
             for (int j = 0; j < i; j++) {
                 // проверка и обмен местами соседних элементов
+                /*
                 if ((asc && massiv[j] > massiv[j + 1])
                         || (!asc && massiv[j] < massiv[j + 1])) {
+                */
+                if (asc == massiv[j] > massiv[j + 1]
+                        || !asc == massiv[j] < massiv[j + 1]) {
                     int tmp = massiv[j];
                     massiv[j] = massiv[j + 1];
                     massiv[j + 1] = tmp;
